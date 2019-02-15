@@ -6,9 +6,24 @@
     <title>VueJs Color Picker</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
-    <script src="main.js"></script>
+    
 </head>
 <body>
-    
+    <div id="color-picker">
+        <canvas
+            id="color-pallet"
+            v-bind:width="canvasW"
+            v-bind:height="canvasH"
+            v-on:click="selColor = getMouseColor($event)"
+            v-on:mouseover="curColor = getMouseColor($event)"
+            ></canvas>
+        <span id="current-color" class="color-showcase" v-bind:style="'background-color: ' + curColor"></span>
+        <span id="selected-color" class="color-showcase" v-bind:style="'background-color: ' + selColor"></span>
+        <div id="log-area">
+            <p>{{ logText }}</p>
+        </div>
+    </div>
 </body>
+    <script src="./assets/vue.js"></script>
+    <script src="main.js"></script>
 </html>

@@ -1,0 +1,12 @@
+
+#color-pallet{
+    border: solid 0.1em black;
+}
+
+.color-showcase{
+    min-width: 5em;
+    min-height: 1.5em;
+    border: solid 1px black;
+    display: inline-block;
+}
+
