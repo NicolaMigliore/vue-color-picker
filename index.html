@@ -15,7 +15,7 @@
             v-bind:width="canvasW"
             v-bind:height="canvasH"
             v-on:click="selColor = getMouseColor($event)"
-            v-on:mouseover="curColor = getMouseColor($event)"
+            v-on:mousemove="curColor = getMouseColor($event)"
             ></canvas>
         <span id="current-color" class="color-showcase" v-bind:style="'background-color: ' + curColor"></span>
         <span id="selected-color" class="color-showcase" v-bind:style="'background-color: ' + selColor"></span>
@@ -25,5 +25,7 @@
     </div>
 </body>
     <script src="./assets/vue.js"></script>
+    <script src="./assets/eventLocatio-utility.js"></script>
+    <script src="./assets/color-utility.js"></script>
     <script src="main.js"></script>
 </html>

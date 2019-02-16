@@ -1,4 +1,11 @@
-
+/**
+ * version: 1.0
+ * 
+ * auth:    Nicola Migliore
+ * date:    2019-02-12
+ * descr:   Main js file for the app
+ *
+ */
 
 var app = new Vue({
     el: '#color-picker',
@@ -27,9 +34,6 @@ var app = new Vue({
             this.ctx.fillStyle = '#FF0000';
             this.ctx.fillRect(0, 0, this.canvasW, this.canvasH);
             this.print('Done setting up!');
-
-            //Other setup
-            console.log(this.ctx);
         },
         setGradient: function(){
             //Vertical gradient
@@ -62,43 +66,17 @@ var app = new Vue({
             this.ctx.fillStyle = grdH;
             this.ctx.fillRect(0, 0, this.canvasW, this.canvasH);
         },
-        getElementPosition: function(obj){
-            /**
-             * Return the location of the element (x,y) being relative to the document.
-             * 
-             * @param {Element} obj Element to be located
-             */
-            var curleft = 0, curtop = 0;
-            if (obj.offsetParent) {
-                do {
-                    curleft += obj.offsetLeft;
-                    curtop += obj.offsetTop;
-                } while (obj = obj.offsetParent);
-                return { x: curleft, y: curtop };
-            }
-            return undefined;
-        },
-        getElementEventLocation: function(event){
-            /**
-             * Returns event location object relative to an element
-             */
-            //let pos = this.getElementPosition(elem);
-            let pos = this.getElementPosition(event.target || event.srcElement);
-            return {
-                x: (event.clientX - (pos ? pos.x : 0)),
-                y: (event.clientY - (pos ? pos.y : 0))
-            }
-        },
         getMouseColor: function(event){
             /**
              * returnes the current color from an event on the given element
              */
             let elem = event.target || event.srcElement;
-            let eventCoords = this.getElementEventLocation(event);
+            // let eventCoords = this.getElementEventLocation(event);
+            let eventCoords = getElementEventLocation(event);
             let pixelData = this.ctx.getImageData(eventCoords.x, eventCoords.y, 1, 1);
-            console.log(pixelData);
             return 'rgba('+pixelData.data[0]+','+pixelData.data[1]+','+pixelData.data[2]+','+pixelData.data[3]+')';
         }
+
     }
 })
 
