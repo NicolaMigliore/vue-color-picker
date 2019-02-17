@@ -17,9 +17,15 @@ var app = new Vue({
         logText: '',
         curColor: 'rgb(100,100,100)',
         selColor: 'rgb(100,100,100)',
-        hue: null,
-        saturation: 50,
-        lightness: 50
+        hue: 10,
+        saturation: 90,
+        lightness: 50,
+       /*
+        saturationStyle: {
+            "background-image": "linear-gradient(to right, hsl("+ this.hue +", 100%, 10%), hsl(150, 100%, 90%))",
+            "background-color": "red"
+        },*/
+        lightnessStyle: {}
     },
     methods: {
         print: function(str){
@@ -67,16 +73,28 @@ var app = new Vue({
 
         },
         setHue: function(rgba){
-            this.hue = getHueFromRGB(rgba);
-            console.log('Current Hue: ', this.hue);
+            //this.hue = getHueFromRGB(rgba);
+            let r, g, b;
+            rgba = rgba.substring(rgba.indexOf('(') + 1, rgba.length);
+            rgba = rgba.substring(0, rgba.indexOf(')'));
+        
+            [r,g,b] = rgba.split(',');              //Deconstruct channels into varibles
+
+            this.hue = rgbToHsl(r,g,b)[0];
         },
-        setColor : function(){
+        setColor : function(event){
             /**
              * Using the current hue, saturation and lightness 
              * values sets the selected color value
              */
+            if(event){
+                this.selColor = this.getMouseColor(event);
+                this.setHue(this.selColor);
+            }
+
             let channes = getRGBFromHSL(this.hue / 360, this.saturation / 100, this.lightness / 100);
             this.selColor = 'rgb(' +channes[0] + ',' + channes[1] +',' + channes[2] + ')';
+            this.print(this.selColor);
         }
 
     }

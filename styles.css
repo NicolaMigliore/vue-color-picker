@@ -11,7 +11,119 @@
 }
 
 
-
-#saturation-slider{
-
+/*====================CUSTOM_SLIDERS====================*/
+#detail-sliders{
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
+
+/*--------------------Hide default styling--------------------*/
+.gradient-slider{
+    -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+    width: 100%; /* Specific width is required for Firefox. */
+    background: transparent; /* Otherwise white in Chrome */
+
+    margin-bottom: 1em;
+}
+.gradient-slider::-webkit-slider-thumb{
+    -webkit-appearance: none;
+} 
+.gradient-slider:focus{
+   /* outline: none;  Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+}
+.gradient-slider::-ms-track{
+    width: 100%;
+    cursor: pointer;
+    /* Hides the slider so custom styles can be added */
+    background: transparent; 
+    border-color: transparent;
+    color: transparent;
+}
+
+/*--------------------Thumb Styling--------------------*/
+/* Special styling for WebKit/Blink */
+.gradient-slider::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    border: 1px solid #000000;
+    height: 2.3em;
+    width: 1.5em;
+    border-radius: 3px;
+    background: #ffffff;
+    cursor: pointer;
+    margin-top: -0.5em; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; /* Add cool effects to your sliders! */
+}
+  /* All the same stuff for Firefox */
+.gradient-slider::-moz-range-thumb{
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    border: 1px solid #000000;
+    height: 2.3em;
+    width: 1.5em;
+    border-radius: 3px;
+    background: #ffffff;
+    cursor: pointer;
+}
+/* All the same stuff for IE */
+.gradient-slider::-ms-thumb{
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    border: 1px solid #000000;
+    height: 2.3em;
+    width: 1.5em;
+    border-radius: 3px;
+    background: #ffffff;
+    cursor: pointer;
+}
+
+/*--------------------Track Styling--------------------*/
+.gradient-slider::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 1.5em;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    /*background: #3071a9;
+      background-image: linear-gradient(to right, red , yellow);
+      background-image: linear-gradient(to right, hsl(302, 100%, 10%), hsl(302, 100%, 90%));*/
+    border-radius: 1.3px;
+    border: 0.1em solid #010101;
+}
+/* .gradient-slider:focus::-webkit-slider-runnable-track {
+    background: #367ebd;
+} */
+  
+.gradient-slider::-moz-range-track {
+    width: 100%;
+    height: 1.5em;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    background: #3071a9;
+    border-radius: 1.3px;
+    border: 0.2px solid #010101;
+}
+  
+.gradient-slider::-ms-track {
+    width: 100%;
+    height: 1.5em;
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    border-width: 16px 0;
+    color: transparent;
+}
+.gradient-slider::-ms-fill-lower {
+    background: #2a6495;
+    border: 0.2px solid #010101;
+    border-radius: 2.6px;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+/* .gradient-slider:focus::-ms-fill-lower {
+    background: #3071a9;
+} */
+.gradient-slider::-ms-fill-upper {
+    background: #3071a9;
+    border: 0.2px solid #010101;
+    border-radius: 2.6px;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+/* .gradient-slider:focus::-ms-fill-upper {
+    background: #367ebd;
+} */
