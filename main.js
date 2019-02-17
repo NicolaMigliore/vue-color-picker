@@ -15,9 +15,11 @@ var app = new Vue({
         canvasW: 200,
         canvasH: 200,
         logText: '',
-        curColor: 'rgba(100,100,100,1)',
-        selColor: '',
-        hue: 'rgba(255,0,0,0.5)'
+        curColor: 'rgb(100,100,100)',
+        selColor: 'rgb(100,100,100)',
+        hue: null,
+        saturation: 50,
+        lightness: 50
     },
     methods: {
         print: function(str){
@@ -36,35 +38,21 @@ var app = new Vue({
             this.print('Done setting up!');
         },
         setGradient: function(){
-            //Vertical gradient
-            //var grdV = this.ctx.createLinearGradient(0,0,0,this.canvasH);
-            // var grdV1 = this.ctx.createLinearGradient(0,0,0,this.canvasH);
-            // grdV1.addColorStop(0, 'white');
-            // grdV1.addColorStop(1, 'black');
-            // var grdV2 = this.ctx.createLinearGradient(this.canvasW,0,this.canvasW,this.canvasH);
-            // grdV2.addColorStop(0, this.hue);
-            // grdV2.addColorStop(1, 'black');
-
-
             //Horizontal gradient with colorStops for VIBGYOR colors
             var grdH = this.ctx.createLinearGradient(0,0,this.canvasW,0);
-            grdH.addColorStop(0, 'rgba(148,0,211,1)');              //Violet
+            grdH.addColorStop(0, 'rgba(148,0,211,1)');                   //Violet
             grdH.addColorStop(0.1428, 'rgba(75,0,130,1)');               //Indigo
             grdH.addColorStop(0.2857, 'rgba(0,0,255,1)');                //Blue
             grdH.addColorStop(0.4285, 'rgba(0,255,0,1)');                //Green
             grdH.addColorStop(0.5714, 'rgba(255,255,0,1)');              //Yellow
             grdH.addColorStop(0.7142, 'rgba(255,127,0,1)');              //Orange
-            grdH.addColorStop(1, 'rgba(255,0,0,1)');                //Red
-
-            //Apply gradients
-            // this.ctx.fillStyle = grdV1;
-            // this.ctx.fillRect(0, 0, this.canvasW, this.canvasH);
-            
-            // this.ctx.fillStyle = grdV2;
-            // this.ctx.fillRect(0, 0, this.canvasW, this.canvasH);
+            grdH.addColorStop(1, 'rgba(255,0,0,1)');                     //Red
 
             this.ctx.fillStyle = grdH;
             this.ctx.fillRect(0, 0, this.canvasW, this.canvasH);
+
+            //Setup hue value and saturation and lightness rangeInput
+            this.setHue(this.selColor);
         },
         getMouseColor: function(event){
             /**
@@ -78,8 +66,17 @@ var app = new Vue({
             return 'rgba('+pixelData.data[0]+','+pixelData.data[1]+','+pixelData.data[2]+','+pixelData.data[3]+')';
 
         },
-        steHue: function(rgba){
+        setHue: function(rgba){
             this.hue = getHueFromRGB(rgba);
+            console.log('Current Hue: ', this.hue);
+        },
+        setColor : function(){
+            /**
+             * Using the current hue, saturation and lightness 
+             * values sets the selected color value
+             */
+            let channes = getRGBFromHSL(this.hue / 360, this.saturation / 100, this.lightness / 100);
+            this.selColor = 'rgb(' +channes[0] + ',' + channes[1] +',' + channes[2] + ')';
         }
 
     }

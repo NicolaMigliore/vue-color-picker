@@ -14,16 +14,30 @@
             id="color-pallet"
             v-bind:width="canvasW"
             v-bind:height="canvasH"
-            v-on:click="selColor = getMouseColor($event); hue = steHue(selColor);"
+            v-on:click="selColor = getMouseColor($event); setHue(selColor);"
             v-on:mousemove="curColor = getMouseColor($event)"
             ></canvas>
-        <input
-            type="range"
-            id="saturation-slider"
-            min=0
-            max=100
-            value=50
-        />
+        <div id="detail-sliders">
+            <input
+                type="range"
+                id="saturation-slider"
+                min=10
+                max=90
+                value=50
+                v-model="saturation"
+                v-on:change="setColor();"
+
+            />
+            <input
+                type="range"
+                id="lightness-slider"
+                min=10
+                max=90
+                value=50
+                v-model="lightness"
+                v-on:change="setColor();"
+            />
+        </div>
         <span id="current-color" class="color-showcase" v-bind:style="'background-color: ' + curColor"></span>
         <span id="selected-color" class="color-showcase" v-bind:style="'background-color: ' + selColor"></span>
         <div id="log-area">
