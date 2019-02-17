@@ -74,7 +74,12 @@ var app = new Vue({
             // let eventCoords = this.getElementEventLocation(event);
             let eventCoords = getElementEventLocation(event);
             let pixelData = this.ctx.getImageData(eventCoords.x, eventCoords.y, 1, 1);
+
             return 'rgba('+pixelData.data[0]+','+pixelData.data[1]+','+pixelData.data[2]+','+pixelData.data[3]+')';
+
+        },
+        steHue: function(rgba){
+            this.hue = getHueFromRGB(rgba);
         }
 
     }
@@ -82,6 +87,5 @@ var app = new Vue({
 
 
 app.setupCanvas();
-
 app.setGradient();
 
