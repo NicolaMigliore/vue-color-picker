@@ -17,10 +17,11 @@
             v-on:click="setColor($event); setHue(selColor);"
             v-on:mousemove="curColor = getMouseColor($event)"
             ></canvas>
-        <div id="detail-sliders">
+            <label for="saturation-slider">Saturation</label> 
             <input
                 type="range"
                 id="saturation-slider"
+                name="saturation-slider"
                 class="gradient-slider"
                 min=10
                 max=90
@@ -28,10 +29,12 @@
                 v-model="saturation"
                 v-on:change="setColor();"
                 v-bind:style="{'background-image': 'linear-gradient(to right, hsl('+hue+', 10%, '+ lightness +'%), hsl('+hue+', 90%, '+ lightness +'%))'}"
-            /></span>
+            />
+            <label for="lightness-slider">Lightness</label> 
             <input
                 type="range"
                 id="lightness-slider"
+                name="lightness-slider"
                 class="gradient-slider"
                 min=10
                 max=90
@@ -40,7 +43,6 @@
                 v-on:change="setColor();"
                 v-bind:style="{'background-image': 'linear-gradient(to right, hsl('+hue+', '+ saturation +'%, 10%), hsl('+hue+', '+ saturation +'%, 90%))'}"
             />
-        </div>
         <span id="current-color" class="color-showcase" v-bind:style="'background-color: ' + curColor"></span>
         <span id="selected-color" class="color-showcase" v-bind:style="'background-color: ' + selColor"></span>
         <div id="log-area">
