@@ -12,7 +12,7 @@ var app = new Vue({
     data: {
         canvas: null,
         ctx: null,
-        canvasW: 200,
+        canvasW: 400,
         canvasH: 200,
         logText: '',
         curColor: 'rgb(100,100,100)',

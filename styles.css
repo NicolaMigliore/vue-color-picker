@@ -127,3 +127,54 @@
 /* .gradient-slider:focus::-ms-fill-upper {
     background: #367ebd;
 } */
+
+
+/*====================LAYOUT====================*/
+#tool-holder{
+    display: grid;
+    grid-template-columns: 99px 99px 99px 99px;
+    grid-template-areas:
+        "colors         colors          colors          colors"
+        "satur-label    satur-slider    satur-slider    satur-slider"
+        "light-label    light-slider    light-slider    light-slider"
+        "cur-show       cur-show        sel-show        sel-show";
+    column-gap: 4px;
+    row-gap: 4px;
+}
+
+/*--------------Grid-areas assign--------------*/
+#color-pallet{
+    grid-area: colors;
+}
+#saturation-label{
+    grid-area: satur-label;
+}
+#saturation-slider{
+    grid-area: satur-slider;
+}
+#lightness-label{
+    grid-area: light-label;
+}
+#lightness-slider{
+    grid-area: light-slider;
+}
+#current-color{
+    grid-area: cur-show;
+}
+#selected-color{
+    grid-area: sel-show;
+}
+
+
+
+#color-picker{
+    display: inline-block;
+}
+#tool-holder{
+    border: solid 2px rgb(80,80,80);
+    background-image: none,linear-gradient(to bottom,rgba(100,100,100,.45) 0,rgba(100,100,100,0) 100%);
+    padding: 0.5em;
+}
+
+
+
